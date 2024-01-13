@@ -12,7 +12,7 @@ enum MpTypes {
 
 let DEBUG_MODE = false;
 
-export function setDebugMode(state: boolean) {
+export function setDebugMode(state: boolean): void {
 	DEBUG_MODE = state;
 }
 

@@ -20,6 +20,8 @@ export function triggerBrowsers(player: Player, name: string, args?: any): void;
 export function triggerBrowsers(name: string, args?: any): void;
 export function triggerBrowser(browser: Browser, name: string, args?: any): void;
 
+export function setDebugMode(state: boolean): void;
+
 export interface Player {
     call: (eventName: string, args?: any[]) => void;
     [property: string]: any;
