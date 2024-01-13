@@ -1,6 +1,6 @@
 {
-  "name": "rage-rpc-new",
-  "version": "0.4.2",
+  "name": "rage-rpc",
+  "version": "0.4.3",
   "description": "An asynchronous RPC implementation for RAGE Multiplayer",
   "main": "dist/rage-rpc.min.js",
   "types": "dist/rage-rpc.d.ts",
@@ -14,14 +14,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matvejs16/rage-rpc-new.git"
+    "url": "git+https://github.com/DmitryChekh/rage-rpc.git"
   },
   "author": "micaww",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/matvejs16/rage-rpc-new"
+    "url": "https://github.com/DmitryChekh/rage-rpc"
   },
-  "homepage": "https://github.com/matvejs16/rage-rpc-new#readme",
+  "homepage": "https://github.com/DmitryChekh/rage-rpc#readme",
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.23.2",

@@ -10,6 +10,28 @@ enum MpTypes {
     Vehicle = 'v'
 }
 
+let DEBUG_MODE = false;
+
+export function setDebugMode(state: boolean) {
+	DEBUG_MODE = state;
+}
+
+export function log(data: string, type: 'info' | 'error' | 'warn' = 'info') {
+	if (!DEBUG_MODE) {
+		return;
+	}
+
+	const env = getEnvironment();
+	const isClient = mp.console;
+	const clientFormatLog = {
+		info: 'logInfo',
+		error: 'logError',
+		warn: 'logWarn'
+	};
+
+	(isClient ? mp.console : console)[isClient ? clientFormatLog[type] : type === 'info' ? 'log' : type](`RPC (${env}): ${data}`);
+}
+
 function isObjectMpType(obj: any, type: MpTypes){
     const client = getEnvironment() === 'client';
     if(obj && typeof obj === 'object' && typeof obj.id !== 'undefined'){
