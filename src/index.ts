@@ -347,6 +347,7 @@ function _callServer(name: string, args?: any, extraData: any = {}): Promise<any
  * @returns The result from the procedure.
  */
 export function callServer(name: string, args?: any, options: CallOptions = {}): Promise<any> {
+    helpers.log(`${environment}: callServer: ${name}. With params: ${JSON.stringify(options)}}`)
     try {
         // if (arguments.length < 1 || arguments.length > 3) return helpers.promiseReject('callServer expects 1 to 3 arguments: "name", optional "args", and optional "options"');
         if (arguments.length < 1 || arguments.length > 3) return Promise.reject('callServer expects 1 to 3 arguments: "name", optional "args", and optional "options"');
@@ -429,6 +430,7 @@ function _callClient(player: Player, name: string, args?: any, extraData: any = 
  * @returns The result from the procedure.
  */
 export function callClient(player: Player | string, name?: string | any, args?: any, options: CallOptions = {}): Promise<any> {
+    helpers.log(`${environment}: callClient: ${name}. With params: ${JSON.stringify(options)}}`)
     try {
         switch (environment) {
             case 'client': {
@@ -441,11 +443,13 @@ export function callClient(player: Player | string, name?: string | any, args?: 
                 break;
             }
             case 'server': {
+                helpers.log('client: callClient: ['+ name + ']')
                 // if ((arguments.length < 2 || arguments.length > 4) || typeof player !== 'object') return helpers.promiseReject('callClient from the server expects 2 to 4 arguments: "player", "name", optional "args", and optional "options"');
                 if ((arguments.length < 2 || arguments.length > 4) || typeof player !== 'object') return Promise.reject('callClient from the server expects 2 to 4 arguments: "player", "name", optional "args", and optional "options"');
                 break;
             }
             case 'cef': {
+                helpers.log('client: callClient: ['+ name + ']')
                 options = args || {};
                 args = name;
                 name = player;
@@ -568,6 +572,7 @@ export function callBrowsers(player: Player | string, name?: string | any, args?
  * @returns The result from the procedure.
  */
 export function callBrowser(browser: Browser, name: string, args?: any, options: CallOptions = {}): Promise<any> {
+    helpers.log(`${environment}: callServer: ${name}. With params: ${JSON.stringify(options)}}`)
     try {
         // if (environment !== 'client') return helpers.promiseReject('callBrowser can only be used in the client environment');
         // if (arguments.length < 2 || arguments.length > 4) return helpers.promiseReject('callBrowser expects 2 to 4 arguments: "browser", "name", optional "args", and optional "options"');
@@ -628,6 +633,7 @@ export function off(name: string, cb: ProcedureListener) {
 
         const listeners = glob.__rpcEvListeners[name];
         if (listeners) {
+            helpers.log(`Unregistered procedure listener "${name}"`);
             listeners.delete(cb);
         }
     } catch (err) {

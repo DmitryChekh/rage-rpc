@@ -10,15 +10,18 @@ enum MpTypes {
     Vehicle = 'v'
 }
 
-let DEBUG_MODE = false;
+let DEBUG_MODE = true;
 
 export function setDebugMode(state: boolean): void {
+    log('RPC-DEUBG-MODE: ' + DEBUG_MODE, 'info', true)
 	DEBUG_MODE = state;
 }
 
-export function log(data: string, type: 'info' | 'error' | 'warn' = 'info') {
+export function log(data: string, type: 'info' | 'error' | 'warn' = 'info', forceLog: boolean = false) {
 	if (!DEBUG_MODE) {
-		return;
+        if (!forceLog) {
+            return;
+        }
 	}
 
 	const env = getEnvironment();
